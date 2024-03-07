@@ -1,0 +1,51 @@
+setting up backend: 
+     npm init -y(inside backend folder) : this cmd will add package.json
+     add "type": "module" in package.json to allow ecma script sntax like inport keyword and export keyword
+     install express and nodemon: npm i express nodemon
+     We use express as framework and nodemon for re-starting server automatically on change
+     add:  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+     } 
+     in package.json.
+
+
+setting up frontend:
+     npm create vite@latest (inside root folder, not frontend): select react and javascript
+     cd frontend -> npm i : to install nom packages
+     set up tailwind: npm install -D tailwindcss postcss autoprefixer
+                     npx tailwindcss init -p
+                    paste : content: [
+                    "./index.html",
+                    "./src/**/*.{js,ts,jsx,tsx}",
+                         ] 
+                         in tailwind .config file
+                    paste: @tailwind base;
+                           @tailwind components;
+                           @tailwind utilities;
+                              in index.css
+     install react-router-dom: npm i react-router-dom
+     install axios for http requests: npm i axios
+     install react-icons for icons: nom i react-icons
+     
+
+setting up database:
+     install mongoose library(to connect to mongodb database): npm i mongoose
+     add mongodb connection url in config file: export const mongodbURL =''
+     import mongoDBURL in index.js and add mongoose.connect to listen to database:
+                                   mongoose
+                                   .connect(mongoDBURL)
+                                   .then(()=>{
+                                        app.lisen();
+                                   })
+                                   .catch((error) =>{
+                                        console.log(error);
+                                   })
+     create a mongoose model: create all models in model folder(a better way!)
+     What is mongoose? :
+     Mongoose is an ODM (Object Data Modeling) library for MongoDB and Node.js. 
+     It provides a higher-level, schema-based abstraction over the raw MongoDB driver. 
+     Mongoose allows developers to define data models with schemas and work with MongoDB 
+     in an object-oriented manner.
+     create mongoose schema using: # mongoose.Schema({title: {type:string, required:true,}},{publishYear: {type:Number,} });
+     To use the schema: export const Blog = mongoose.model('Cat', blogSchema);
