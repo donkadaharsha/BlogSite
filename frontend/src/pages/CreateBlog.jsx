@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import AccessCodeDialog from './AccessCodeDialog';
 let list =[];
 const CreateBlog = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [showAccessCodeDialog, setShowAccessCodeDialog] = useState(true);
+ 
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     setSelectedFile(file);
@@ -48,7 +52,7 @@ const CreateBlog = () => {
       const response = await axios.put(endpoint, selectedFile, { headers });
       console.log(response);console.log(data);
       if (response.status === 200) {
-       
+          setShowAccessCodeDialog(false);
           setSelectedFile(null)
           
           alert('File uploaded successfully!')
@@ -74,18 +78,32 @@ const CreateBlog = () => {
     }
    
     
-    
+    try {
+      // Open the access code dialog
+      setShowAccessCodeDialog(true);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
     
     
   };
-
+  const closeAccessCodeDialog = () => {
+    // Close the access code dialog
+    setShowAccessCodeDialog(false);
+  };
 
   return (
     <div>
+      {/* Access Code Dialog */}
+      {showAccessCodeDialog && (
+        <AccessCodeDialog onClose={closeAccessCodeDialog} />
+      )}
+
       <input type='text'  onChange={(e) => setTitle(e.target.value)} className='border-2 border-gray-400 px-4 py-2 w-full'/>
       <input type='text' onChange={(e) => setDescription(e.target.value)} className='border-2 border-gray-400 px-4 py-2 w-full'/>
       <input type="file" onChange={handleFileChange} />
       <button onClick={handleUpload}>Upload</button>
+ 
     
     </div>
   );

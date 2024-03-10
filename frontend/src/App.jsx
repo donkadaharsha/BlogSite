@@ -5,13 +5,13 @@ import CreateBlog from './pages/CreateBlog'
 import ShowBlog from './pages/ShowBlog'
 import EditBlog from './pages/EditBlog'
 import DeleteBlog from './pages/DeleteBlog'
-
+import AccessCodeDialog from './pages/AccessCodeDialog'
 const App = () => {
   return (
     <Routes>
       <Route path='/' element={<Home/>}></Route>
       <Route path='/CreateBlog' element={<CreateBlog/>}></Route>
-      <Route path='/blogs/details/:id' element={<ShowBlog/>}></Route>
+      <Route path='/blogs/:id' element={<ShowBlog/>}></Route>
       <Route path='/blogs/edit/:id' element={<EditBlog/>}></Route>
       <Route path='/blogs/delete/:id' element={<DeleteBlog/>}></Route>
     </Routes>
