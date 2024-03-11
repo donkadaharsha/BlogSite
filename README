@@ -49,3 +49,6 @@ setting up database:
      in an object-oriented manner.
      create mongoose schema using: # mongoose.Schema({title: {type:string, required:true,}},{publishYear: {type:Number,} });
      To use the schema: export const Blog = mongoose.model('Cat', blogSchema);
+
+ISSUES:
+Implementing a text-editor (bold, italic, font family, font size). Tried using draft.js but did not work. 

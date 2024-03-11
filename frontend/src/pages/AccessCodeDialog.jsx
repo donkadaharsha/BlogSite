@@ -6,7 +6,7 @@ const AccessCodeDialog = ({ onClose }) => {
   const [error, setError] = useState('');
 
   const checkAccessCode = () => {
-    if (accessCode === '344er6') {
+    if (accessCode === '000') {
       // Access code is correct, you can navigate to the next page or perform any action
       console.log('Access code is correct');
       onClose(); // Close the dialog
