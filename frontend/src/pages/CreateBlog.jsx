@@ -35,7 +35,7 @@ const CreateBlog = () => {
     }
 
     const imgPath = selectedFile.name;
-    const endpoint = `https://gc8rfzbpji.execute-api.us-east-2.amazonaws.com/dev1/harsha-blog-bucket/${imgPath}`;
+    const endpoint = `API_invoke_url/bucket_name/${imgPath}`;
     const data = {
       title,
       imgPath,
