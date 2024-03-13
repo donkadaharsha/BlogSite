@@ -1,4 +1,4 @@
-setting up backend: 
+## setting up backend: 
      npm init -y(inside backend folder) : this cmd will add package.json
      add "type": "module" in package.json to allow ecma script sntax like inport keyword and export keyword
      install express and nodemon: npm i express nodemon
@@ -10,7 +10,7 @@ setting up backend:
      in package.json.
 
 
-setting up frontend:
+## setting up frontend:
      npm create vite@latest (inside root folder, not frontend): select react and javascript
      cd frontend -> npm i : to install nom packages
      set up tailwind: npm install -D tailwindcss postcss autoprefixer
@@ -29,7 +29,7 @@ setting up frontend:
      install react-icons for icons: nom i react-icons
      
 
-setting up database:
+## setting up database:
      install mongoose library(to connect to mongodb database): npm i mongoose
      add mongodb connection url in config file: export const mongodbURL =''
      import mongoDBURL in index.js and add mongoose.connect to listen to database:
@@ -50,5 +50,46 @@ setting up database:
      create mongoose schema using: # mongoose.Schema({title: {type:string, required:true,}},{publishYear: {type:Number,} });
      To use the schema: export const Blog = mongoose.model('Cat', blogSchema);
 
-ISSUES:
+## Amazon S3 setup for building API for image upload to S3 bucket from browser:
+          Create a S3 bucket -->
+                    Set bucket name, choose nearest region, enabel bucket versioning and encryption.
+          Create a IAM role -->
+                    IAM -> Create role ->  USe case: API Gateway(CloudWatchLogs) -> set Role name -> create
+          Add PUT policy to s3 service for IAM role -->
+                    go to role -> attach new policy -> create policy -> choose service (s3) -> Action : putObject
+                         -> Resources : Add ARN (of the aws s3 bucket to only allow that to specific bucket) 
+                         -> Object name: Any (to allow to upload to any folder within the bucket) 
+                              -> review -> give a name for policy -> create policy -> go to role and attach the policy
+          Add GET policy -> Follow similiar steps and add s3 getObject (Bucket should be made public for anyone to view the images in browser)
+
+
+          Create a new API -> 
+                    Choose REST API -> Create
+                    Create a resource: Action -> create a resource -> Resource path: /{bucket} (curly brace to reference path parameter)
+                                        Under bucket create another resource {filename}. So end resource is /{bucket}/{filename}
+                    Create a PUT and GET method within the resources 
+                         Choose method -> Choose integration(AWS service) -> Choose same region as s3 region -> AWS service - s3 -> HTTP method(put/get) -> Action type (Use path override) -> path override (give resource path {bucket}/{filename})
+                         Execution role: Add IAM role ARN -> save
+                         
+                    Integrate request -> Go to API method -> Integration request -> 
+                         Configure URL path parameters:
+                              name : bucket mapped from: method.request.path.bucket
+                              name: filename mapped from: method.request.path.filename
+                         
+                    Specify allowed binary media types(jpeg and png for images):
+                         API settings -> image/jpeg, image/png, image/*(for allowing every file)
+                    
+                    Deploy API
+
+                    Use the invoke URL from API as endpoint for PUT and GET. Test the call in Postman/Thunderclient.
+                         
+                    
+                    
+
+
+
+
+## ISSUES:
 Implementing a text-editor (bold, italic, font family, font size). Tried using draft.js but did not work. 
+
+GET images without making s3 bucket public. 

@@ -60,7 +60,8 @@ const CreateBlog = () => {
         try {
           const response_db = await axios.post('http://localhost:5554/blogs', data);
           console.log(response_db);
-        } catch (error) {
+        } 
+        catch (error) {
           alert('DB update failed');
           console.error('Error:', error.message);
         }

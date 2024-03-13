@@ -6,7 +6,7 @@ const AccessCodeDialog = ({ onClose }) => {
   const [error, setError] = useState('');
 
   const checkAccessCode = () => {
-    if (accessCode === '000') {
+    if (accessCode === '000000') {
       // Access code is correct, you can navigate to the next page or perform any action
       console.log('Access code is correct');
       onClose(); // Close the dialog
@@ -41,7 +41,7 @@ const AccessCodeDialog = ({ onClose }) => {
                 </h3>
                 <div className="mt-2">
                   <input
-                    type="text"
+                    type='password'
                     placeholder="Access Code"
                     value={accessCode}
                     onChange={(e) => setAccessCode(e.target.value)}
