@@ -1,3 +1,16 @@
+# Overview
+
+This is a blogging website for an individual user. The user can use the access code to login and upload blog content (Title, image, description). This will be created as a blog page automatically and also added as a thumbnail in the home page where all blogs are present. This is a full stack project developed using MERN stack. AWS S3 is used as an images container and AWS APIs are used for uploading and getting images to the browser.
+
+# Demo video of site can be viewed/downloaded from site-demo.mp4 file: 
+https://github.com/donkadaharsha/BlogSite/blob/main/site-demo.mp4.mp4 
+Please select 'view raw' to download the file if you are unable to view it. 
+
+
+# STEPS FOR THE PROJECT
+Below is a step by step guide for you to run this program. 
+
+
 ## setting up backend: 
      npm init -y(inside backend folder) : this cmd will add package.json
      add "type": "module" in package.json to allow ecma script sntax like inport keyword and export keyword
@@ -83,13 +96,15 @@
 
                     Use the invoke URL from API as endpoint for PUT and GET. Test the call in Postman/Thunderclient.
                          
+               
                     
-                    
 
 
 
 
-## ISSUES:
-Implementing a text-editor (bold, italic, font family, font size). Tried using draft.js but did not work. 
+# ISSUES:
+    - Implementing a text-editor in upload blog page for blog description/content(bold, italic, font family, font   size). Tried using draft.js but did not work. 
 
-GET images without making s3 bucket public. 
+    - GET images without making s3 bucket public. 
+
+    - Applying AWS SDK credential authentication for admin login and upload.

@@ -7,11 +7,11 @@ const AccessCodeDialog = ({ onClose }) => {
 
   const checkAccessCode = () => {
     if (accessCode === '000000') {
-      // Access code is correct, you can navigate to the next page or perform any action
+      
       console.log('Access code is correct');
       onClose(); // Close the dialog
     } else {
-      // Access code is incorrect, display an error message
+     
       setError('Wrong access code. Please try again.');
     }
   };
